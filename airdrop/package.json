@@ -8,7 +8,7 @@
     "airdrop": "ts-node ./airdrop.ts",
     "transfer": "ts-node ./transfer.ts",
     "enroll": "ts-node ./enroll.ts",
-    "base58_to_wallet.ts": "ts-node ./base58_to_wallet.ts"
+    "base58_to_wallet": "ts-node ./base58_to_wallet.ts"
   },
   "dependencies": {
     "@coral-xyz/anchor": "^0.30.1",
