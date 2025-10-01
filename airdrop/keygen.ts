@@ -1,15 +1,21 @@
-import { Keypair } from "@solana/web3.js"; 
+import { Keypair } from "@solana/web3.js";
+import * as fs from "fs";
+import * as path from "path";
 
-//Generate a new keypair 
-let kp = Keypair.generate();
+// Generate a new Solana keypair
+const kp = Keypair.generate();
 
-console.log(`You've generated a new Solana wallet: 
-    
-${kp.publicKey.toBase58()}
+console.log(`✔️ You've generated a new Solana wallet!`);
+console.log(`Public Key: ${kp.publicKey.toBase58()}`);
 
-To save your wallet, copy and paste the output of the following into a JSON file:`);
+// Save the secret key array to dev-wallet.json locally
+const secretKeyArray = Array.from(kp.secretKey);
+const filePath = path.join(__dirname, "dev-wallet.json");
 
-console.log(`[${kp.secretKey}]`);
+fs.writeFileSync(filePath, JSON.stringify(secretKeyArray), {
+  encoding: "utf8",
+  mode: 0o600, // File permissions: owner read/write only
+});
 
-
-
+console.log(`\n🔐 Your wallet secret key has been saved at: ${filePath}`);
+console.log("⚠️ Keep this file safe and never share it. If lost or exposed, you lose access to your wallet!");
